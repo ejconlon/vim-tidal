@@ -52,13 +52,17 @@ endfunction
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 if !exists("g:tidal_no_mappings") || !g:tidal_no_mappings
+  if !exists('g:tidal_send_map')
+    let g:tidal_send_map = '<c-e>'
+  endif
+
   if !hasmapto('<Plug>TidalConfig', 'n')
     nmap <buffer> <localleader>c <Plug>TidalConfig
   endif
 
   if !hasmapto('<Plug>TidalRegionSend', 'x')
     xmap <buffer> <localleader>s  <Plug>TidalRegionSend
-    xmap <buffer> <c-e> <Plug>TidalRegionSend
+    execute 'xmap <buffer> ' . g:tidal_send_map . ' <Plug>TidalRegionSend'
   endif
 
   if !hasmapto('<Plug>TidalLineSend', 'n')
@@ -67,10 +71,10 @@ if !exists("g:tidal_no_mappings") || !g:tidal_no_mappings
 
   if !hasmapto('<Plug>TidalParagraphSend', 'n')
     nmap <buffer> <localleader>ss <Plug>TidalParagraphSend
-    nmap <buffer> <c-e> <Plug>TidalParagraphSend
+    execute 'nmap <buffer> ' . g:tidal_send_map . ' <Plug>TidalParagraphSend'
   endif
 
-  imap <buffer> <c-e> <Esc><Plug>TidalParagraphSend<Esc>i<Right>
+  execute 'imap <buffer> ' . g:tidal_send_map . ' <Esc><Plug>TidalParagraphSend<Esc>i<Right>'
 
   nnoremap <buffer> <localleader>h :TidalHush<cr>
   nnoremap <buffer> <c-h> :TidalHush<cr>

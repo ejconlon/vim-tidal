@@ -277,6 +277,13 @@ let g:tidal_no_mappings = 1
 See section Mappings on [ftplugin/tidal.vim](ftplugin/tidal.vim) and copy the
 bindings you like to your `.vimrc` file and modify them.
 
+You can also customize the send command (default `<c-e>`) by setting your
+preferred key sequence:
+
+```vim
+let g:tidal_send_map = <c-e>
+```
+
 ### Vim Terminal
 
 On both Vim (version 8 or above) and NeoVim, the default target in which we boot
